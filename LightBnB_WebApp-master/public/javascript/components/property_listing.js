@@ -21,11 +21,17 @@ $(() => {
             <div class="property-listing__rating">${Math.round(property.average_rating * 100) / 100}/5 stars</div>
             <div class="property-listing__price">$${property.cost_per_night/100.0}/night</div>
           </footer>
+          <button data-property_id='${property.id}' id='reservation-button'>Make a reservation</input>
         </section>
       </article>
     `
   }
 
   window.propertyListing.createListing = createListing;
+  
+  $('main').on('click', '#reservation-button', function() {
+    document.cookie = `property_id=${$(this).attr("data-property_id")}`;
+    views_manager.show('makeReservation');
+  });
 
 });

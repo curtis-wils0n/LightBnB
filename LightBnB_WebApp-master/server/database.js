@@ -194,3 +194,27 @@ const addProperty = function(property) {
   .then((result) => {return result.rows[0];});
 };
 exports.addProperty = addProperty;
+
+
+const addReservation = function(reservation) {
+  console.log(reservation);
+  const queryString = `
+    INSERT INTO reservations (
+      start_date,
+      end_date,
+      property_id,
+      guest_id
+    )
+    VALUES ($1, $2, $3, $4)
+    RETURNING *;
+  `;
+  const queryParams = [
+    reservation['start-date'],
+    reservation['end-date'],
+    reservation['property_id'],
+    reservation.guest_id
+  ];
+  return pool.query(queryString, queryParams)
+  .then((result) => {return result.rows;});
+};
+exports.addReservation = addReservation;

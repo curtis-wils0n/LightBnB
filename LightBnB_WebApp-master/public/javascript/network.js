@@ -28,6 +28,15 @@ function signUp(data) {
   });
 }
 
+function makeReservation(data, propertyId) {
+  data += `&property_id=${propertyId}`
+  return $.ajax({
+    method: "POST",
+    url: "/api/reservations",
+    data
+  });
+}
+
 function getAllListings(params) {
   let url = "/api/properties";
   if (params) {
