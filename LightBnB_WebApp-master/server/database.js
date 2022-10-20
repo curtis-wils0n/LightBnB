@@ -215,6 +215,6 @@ const addReservation = function(reservation) {
     reservation.guest_id
   ];
   return pool.query(queryString, queryParams)
-  .then((result) => {return result.rows;});
+  .then((result) => {return result.rows[0]});
 };
 exports.addReservation = addReservation;

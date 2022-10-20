@@ -33,6 +33,7 @@ $(() => {
     const propertyId = getCookie('property_id');
     const data = $($reservationForm).serialize();
     makeReservation(data, propertyId)
+      .then(alert('Your reservation was successful!'))
       .then(views_manager.show('listings'));
   });
 });
